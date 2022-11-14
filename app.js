@@ -66,6 +66,8 @@ function mainMenu(person, people) {
         case "info":
             //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
             // HINT: Look for a person-object stringifier utility function to help
+
+
             let personInfo = displayPerson(person[0]);
             alert(personInfo);
             break;
@@ -146,11 +148,14 @@ function displayPerson(person) {
     personInfo += `Weight: ${person.weight}\n`;
     personInfo += `Eye Color: ${person.eyeColor}\n`;
     personInfo += `Occupation: ${person.occupation}\n`;
-    personInfo += `Parents ID: ${person.parents}\n`;
-    personInfo += `Spouse: ${person.currentSpouse}\n`;
-    
+
+
+
+//What type of for loop can i use access the key and value pairs of person?
+
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
     alert(personInfo);
+    return personInfo;
 }
 // End of displayPerson()
 
@@ -164,7 +169,7 @@ function displayPerson(person) {
  */
 function promptFor(question, valid) {
     do {
-        var response = prompt(question).trim();
+        var response = prompt(question).trim().toLowerCase();
     } while (!response || !valid(response));
     return response;
 }
@@ -193,3 +198,36 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+
+// To do 1-3.
+
+
+function findPersonFamily(person, people){
+    let spouse = findById(person, people, "currentSpouse", "id");
+    let parents = findParents(person, people);
+    let siblings = findSibs(person,people);
+};
+
+
+function findById (person, people, personProp, itemProp){
+    return people.filter((item) =>{
+        return person[personProp] === item[itemProp] })
+};
+
+function findParents (person, people){
+    return people.filter((item) =>{
+        return person.parents.includes(item.id)})
+};
+
+function findSibs(person, people){
+    return people.filter((item)=>{
+        return person.parents.includes(item.parents[0] || item.parents[1])
+    })
+}
+
+
+//! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
+                //! TODO #4a: Provide option to search for single or multiple ////////////////////////////
+
+// to do 4:
