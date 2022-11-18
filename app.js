@@ -66,8 +66,6 @@ function mainMenu(person, people) {
         case "info":
             //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
             // HINT: Look for a person-object stringifier utility function to help
-
-
             let personInfo = displayPerson(person[0]);
             alert(personInfo);
             break;
@@ -169,7 +167,7 @@ function displayPerson(person) {
  */
 function promptFor(question, valid) {
     do {
-        var response = prompt(question).trim().toLowerCase();
+        var response = prompt(question).trim();
     } while (!response || !valid(response));
     return response;
 }
@@ -202,32 +200,35 @@ function chars(input) {
 
 // To do 1-3.
 
-
-function findPersonFamily(person, people){
-    let spouse = findById(person, people, "currentSpouse", "id");
-    let parents = findParents(person, people);
-    let siblings = findSibs(person,people);
-};
+function findPersonFamily(person, people)
+    let personFamily = people.filter((spouse) => {
+        if(person[currentSpouse] === spouse[currentSpouse])
+    })
 
 
-function findById (person, people, personProp, itemProp){
-    return people.filter((item) =>{
-        return person[personProp] === item[itemProp] })
-};
+
+// function findById (person, people, personProp, itemProp){
+//     return people.filter((item) =>{
+//         return person[personProp] === item[itemProp] })
+// };
 
 function findParents (person, people){
     return people.filter((item) =>{
         return person.parents.includes(item.id)})
 };
 
-function findSibs(person, people){
+// function findSibs(person, people){
     return people.filter((item)=>{
         return person.parents.includes(item.parents[0] || item.parents[1])
     })
 }
 
 
-//! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
-                //! TODO #4a: Provide option to search for single or multiple ////////////////////////////
+// //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
+//                 //! TODO #4a: Provide option to search for single or multiple ////////////////////////////
 
-// to do 4:
+// // to do 4:
+function searchByTrait(people) {
+    let userInputProp = promptFor ("Enter a trait ()  ")
+
+}
