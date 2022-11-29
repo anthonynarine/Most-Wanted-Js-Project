@@ -200,35 +200,32 @@ function chars(input) {
 
 // To do 1-3.
 
-function findPersonFamily(person, people)
-    let personFamily = people.filter((spouse) => {
-        if(person[currentSpouse] === spouse[currentSpouse])
-    })
-
-
-
-// function findById (person, people, personProp, itemProp){
-//     return people.filter((item) =>{
-//         return person[personProp] === item[itemProp] })
-// };
+function findPersonFamily (person,people) {
+    let result = ""
+    if (person.currentSpouse !== null) {
+        let spouseOjb = findSpouse(person, peopel);
+        let spouseStr = spouseOjb.map(function(person){
+            return `Spouse: ${pseron.firstName} ${person.lastName}\n`;
+        });
+        result += spouseStr
+    }
+    if (person.parent[0]) {
+        let parentObj = findParents(person, peopele);
+        let parentstr = parentObj.map(function (person){
+            return `Parent: ${person.firstName} ${person.lastName}\n`;
+        });
+        result += parentstr;
+    }
+}
+return results;
 
 function findParents (person, people){
     return people.filter((item) =>{
         return person.parents.includes(item.id)})
 };
 
-// function findSibs(person, people){
-    return people.filter((item)=>{
-        return person.parents.includes(item.parents[0] || item.parents[1])
-    })
-}
-
-
-// //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
-//                 //! TODO #4a: Provide option to search for single or multiple ////////////////////////////
-
-// // to do 4:
-function searchByTrait(people) {
-    let userInputProp = promptFor ("Enter a trait ()  ")
-
+function findSpouse(person, people) {
+    return people.filter((item) =>{
+        return item.id === person.currentSpouse;
+    });
 }
